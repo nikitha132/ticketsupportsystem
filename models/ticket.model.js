@@ -59,7 +59,7 @@ const ticketSchema = new mongoose.Schema({
         enum: ['low', 'medium', 'high'],
         default: 'medium',
     },
-    dueDate: Date,
+
     assignedTo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // Reference to User collection

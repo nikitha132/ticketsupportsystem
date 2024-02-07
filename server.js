@@ -1,16 +1,25 @@
 import express from 'express';
 import http from 'http';
-const app = express();
 
 import routes from './routes/index.js'
 import connectDb from './config/dbConnection.js';
+import cors from 'cors'
+import initializeSocket from './services/socket.js';
+const app = express();
+
 
 app.use(express.json())
 
-import initializeSocket from './services/socket.js';
 const server = http.createServer(app);
 
 
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow requests only from this origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,  // Enable credentials (cookies, authorization headers, etc.)
+};
+
+app.use(cors(corsOptions));
 
 const port = 8000;
 
